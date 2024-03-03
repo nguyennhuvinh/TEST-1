@@ -9,12 +9,14 @@ public class EnemyController : MonoBehaviour
     public int health = 5;
     private int currentHealth;
     private bool canCollide = false;
-  
+
+    GameOverScreen gameOverScreen;
+
     private void Start()
     {
         currentHealth = health;
+        gameOverScreen = FindObjectOfType<GameOverScreen>();
 
- 
     }
 
 
@@ -24,11 +26,20 @@ public class EnemyController : MonoBehaviour
         {
             if (collision.CompareTag("Player"))
             {
-                Time.timeScale = 0;
+                if (gameOverScreen != null)
+                {
+                    gameOverScreen.ShowGameOverScreen();
+                }
+                Time.timeScale = 0; // D
+
             }
             if (collision.CompareTag("Boundary"))
             {
-                Time.timeScale = 0;
+                if (gameOverScreen != null)
+                {
+                    gameOverScreen.ShowGameOverScreen();
+                }
+                Time.timeScale = 0; // D
             }
 
             Bullet bullet = collision.GetComponent<Bullet>();

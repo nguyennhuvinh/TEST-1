@@ -8,10 +8,11 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance { get; private set; }
 
     public TMP_Text scoreText;
-    private int score;
+    int score;
 
     private void Awake()
     {
+        
         if (Instance == null)
         {
             Instance = this;
@@ -28,4 +29,10 @@ public class ScoreManager : MonoBehaviour
         score += amount;
         scoreText.text = "Score: " + score;
     }
-}
+    public int GetCurrentScore()
+    {
+            return score;
+    }
+
+ }
+
