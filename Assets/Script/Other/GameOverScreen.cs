@@ -8,7 +8,6 @@ public class GameOverScreen : MonoBehaviour
 {
     public TMP_Text ScoreDisplay;
     public GameObject gameOverScreenObject;
-    int score = 0;
 
     public void ShowGameOverScreen()
     {
@@ -22,7 +21,10 @@ public class GameOverScreen : MonoBehaviour
 
     public void Restart()
     {
-        ScoreManager.Instance.scoreText.text = "Score: " + score;
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.ResetScore();
+        }
         SceneManager.LoadScene("Game");
         Time.timeScale = 1;
     }
